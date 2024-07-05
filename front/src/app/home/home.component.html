@@ -1,0 +1,45 @@
+<div class="categories">
+    <div class="container">
+        <div *ngIf="!categoriaSelecionada">
+            <h1>Compre por categorias</h1>
+        </div>
+
+        <div class="categories-list">
+            <div *ngIf="categoriaSelecionada">
+                <div class="categories-detalhada">
+                    <h2>{{ categoriaSelecionada?.nome }}</h2>
+                    <p>{{ categoriaSelecionada?.descricao }}</p>
+                </div>
+            </div>
+
+            <div *ngIf="!categoriaSelecionada">
+                <div class="categories-item" *ngFor="let categoria of categorias"
+                    (click)="filterByCategory(categoria)">
+                    <div class="category-circle"></div>
+                    <div class="categories-details">
+                        <h2>{{ categoria.nome }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="product-list">
+        <ng-container *ngIf="produtosFiltrados.length > 0; else noProducts">
+            <div class="product" *ngFor="let produto of produtosFiltrados">
+                <div class="product-item" (click)="seeDetails(produto.id)">
+                    <img [src]="produto.foto" alt="Imagem do Produto" class="product-image">
+                    <div class="product-details">
+                        <h3>{{ produto.nome }}</h3>
+                        <p class="product-price">{{ produto.preco | currency:'BRL':true }}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #noProducts>
+            <div class="no-products-message"> Não há produtos disponíveis para esta categoria. </div>
+        </ng-template>
+    </div>
+</div>

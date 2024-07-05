@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="detalhes-produto-container">
+        <div class="detalhes-produto-imagem">
+            <img [src]="produto?.foto" alt="Imagem do Produto">
+        </div>
+        <div class="detalhes-produto-info">
+            <h1>{{ produto?.nome }}</h1>
+            <div class="info-produto">
+                <p>CATEGORIA: {{ produto?.categoria.nome }}</p>
+                <p>Tamanho: {{ produto?.tamanho }}cm</p>
+                <p>Autor: {{ produto?.autor }}</p>
+            </div>
+            <p style="margin-top:20px"><i>{{ produto?.descricao }}</i></p>
+            <p class="detalhes-produto-preco">Preço: {{ produto?.preco | currency:'BRL':true }}</p>
+            <div class="detalhes-produto-quantidade">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" name="quantidade" [(ngModel)]="quantidade" min="1">
+            </div>
+            <button (click)="addToCart()">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+</div>

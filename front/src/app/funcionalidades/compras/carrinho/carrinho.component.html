@@ -1,0 +1,27 @@
+<div class="carrinho-fundo">
+    <div class="container">
+        <h1>Carrinho de Compras</h1>
+        <ul>
+            <li *ngFor="let item of itensCarrinho" class="carrinho-item">
+                <input type="checkbox" [(ngModel)]="item.selecionado" (change)="calculateSubtotal()">
+                <img [src]="item.produto.foto" alt="{{ item.produto.nome }}" class="produto-imagem">
+                <div class="produto-info">
+                    <p>{{ item.produto.nome }}</p>
+                    <input type="number" [(ngModel)]="item.quantidade"
+                        (ngModelChange)="updateQuantity(item.produto, item.quantidade)" min="1">
+                </div>
+                <button class="remover-button" (click)="removeFromCart(item.produto)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </li>
+        </ul>
+        <div class="info-carrinho">
+            <div class="subtotal">
+                <h3>Subtotal: <b>R$ {{ subtotal | number: '1.2-2' }}</b></h3>
+            </div>
+            <div>
+                <button (click)="closeOrder()" class="fechar-pedido-button">Fechar Pedido</button>
+            </div>
+        </div>
+    </div>
+</div>

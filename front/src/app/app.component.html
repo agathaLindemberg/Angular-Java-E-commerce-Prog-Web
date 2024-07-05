@@ -1,0 +1,27 @@
+<body>
+  <div class="page-container">
+    <header style="border-bottom: 1px solid #cacaca;">
+      <div class="container">
+        <div class="logo" (click)="clearFilter()">
+          <img src="assets/logo.png" alt="Logo" (click)="navigateToHome()">
+        </div>
+        <div class="buttons">
+          <button mat-icon-button (click)="navigateToCart()">
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+          <button mat-icon-button (click)="navigateToLoginOrProfile()">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+    <footer>
+      <div class="container">
+        <p>Feito sem fins lucrativos para a Disciplina Programação Web 1 - UFC VIRTUAL (2024)</p>
+      </div>
+    </footer>
+  </div>
+</body>

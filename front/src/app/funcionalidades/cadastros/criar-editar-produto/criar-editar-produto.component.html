@@ -1,0 +1,83 @@
+<form [formGroup]="produtoForm" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+        <div class="form-left">
+            <div class="form-group">
+                <input id="foto" formControlName="foto" type="text" class="form-control" placeholder="Foto">
+                <div *ngIf="produtoForm.get('foto').touched && produtoForm.get('foto').invalid" class="error">
+                    Foto é obrigatória.
+                </div>
+            </div>
+        </div>
+        <div class="form-right">
+
+            <div *ngIf="produtoId !== null" class="form-group">
+                <input id="id" formControlName="id" type="text" class="form-control" disabled placeholder="ID">
+            </div>
+
+            <div class="form-group">
+                <input id="nome" formControlName="nome" type="text" class="form-control" placeholder="Nome">
+                <div *ngIf="produtoForm.get('nome').touched && produtoForm.get('nome').invalid" class="error">
+                    Nome é obrigatório.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input id="autor" formControlName="autor" type="text" class="form-control" placeholder="Autor">
+                <div *ngIf="produtoForm.get('autor').touched && produtoForm.get('autor').invalid" class="error">
+                    Autor é obrigatório e deve ter no máximo 100 caracteres.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input id="descricao" formControlName="descricao" type="text" class="form-control"
+                    placeholder="Descrição">
+                <div *ngIf="produtoForm.get('descricao').touched && produtoForm.get('descricao').invalid" class="error">
+                    Descrição é obrigatória.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input id="preco" formControlName="preco" type="number" step="0.01" class="form-control"
+                    placeholder="Preço" min="0.01">
+                <div *ngIf="produtoForm.get('preco').touched && produtoForm.get('preco').invalid" class="error">
+                    Preço é obrigatório e deve ser um valor positivo.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input id="quantidade" formControlName="quantidade" type="number" class="form-control"
+                    placeholder="Quantidade" min="1">
+                <div *ngIf="produtoForm.get('quantidade').touched && produtoForm.get('quantidade').invalid"
+                    class="error">
+                    Quantidade é obrigatória.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input id="tamanho" formControlName="tamanho" type="number" class="form-control" placeholder="Tamanho"
+                    min="1">
+                <div *ngIf="produtoForm.get('tamanho').touched && produtoForm.get('tamanho').invalid" class="error">
+                    Tamanho é obrigatório.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" formControlName="categoria" class="form-control" aria-label="Selecione uma categoria">
+                  <option value="" [disabled]="true" selected>Selecione uma categoria</option>
+                  <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nome }}</option>
+                </select>
+                <div *ngIf="produtoForm.get('categoria').touched && produtoForm.get('categoria').invalid" class="error">
+                  Categoria é obrigatória.
+                </div>
+              </div>
+              
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button type="submit" class="btn btn-primary">
+            {{ produtoId !== null ? 'Atualizar' : 'Salvar' }}
+        </button>
+    </div>
+</form>
