@@ -61,6 +61,11 @@ ul {
   background-color: #95439c;
 }
 
+.fechar-pedido-button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
 .info-carrinho{
   display: flex;
   justify-content: space-between;

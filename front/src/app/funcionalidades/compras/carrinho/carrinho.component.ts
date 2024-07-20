@@ -50,6 +50,11 @@ export class CarrinhoComponent implements OnInit {
   closeOrder(): void {
     const itensSelecionados = this.itensCarrinho.filter(item => item.selecionado);
     if (itensSelecionados.length > 0) {
+      if (!this.verificarEstoque(itensSelecionados)) {
+        alert('Quantidade insuficiente no estoque para um ou mais produtos.');
+        return;
+      }
+
       const venda: Venda = {
         dataHora: new Date(),
         usuario: this.usuarioService.getUsuario(),
@@ -58,6 +63,11 @@ export class CarrinhoComponent implements OnInit {
           produto: item.produto
         }))
       };
+
+      if (venda.usuario == null) {
+        alert('Precisa estar logado para efetuar uma venda!');
+        return;
+      }
 
       this.vendaService.save(venda).subscribe(() => {
         alert('Venda salva com sucesso');
@@ -69,5 +79,18 @@ export class CarrinhoComponent implements OnInit {
     } else {
       alert('Nenhum item selecionado para a venda');
     }
+  }
+
+  verificarEstoque(itensSelecionados: any[]): boolean {
+    for (const item of itensSelecionados) {
+      if (item.quantidade > item.produto.quantidade) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  hasSelectedItems(): boolean {
+    return this.itensCarrinho.some(item => item.selecionado);
   }
 }

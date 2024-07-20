@@ -20,7 +20,8 @@
                 <h3>Subtotal: <b>R$ {{ subtotal | number: '1.2-2' }}</b></h3>
             </div>
             <div>
-                <button (click)="closeOrder()" class="fechar-pedido-button">Fechar Pedido</button>
+                <button (click)="closeOrder()" class="fechar-pedido-button" [disabled]="!hasSelectedItems()">Fechar
+                    Pedido</button>
             </div>
         </div>
     </div>

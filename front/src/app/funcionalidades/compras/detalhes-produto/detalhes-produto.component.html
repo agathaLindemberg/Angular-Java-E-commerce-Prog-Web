@@ -9,6 +9,7 @@
                 <p>CATEGORIA: {{ produto?.categoria.nome }}</p>
                 <p>Tamanho: {{ produto?.tamanho }}cm</p>
                 <p>Autor: {{ produto?.autor }}</p>
+                <p>Quantidade: {{ produto?.quantidade }}</p>
             </div>
             <p style="margin-top:20px"><i>{{ produto?.descricao }}</i></p>
             <p class="detalhes-produto-preco">Preço: {{ produto?.preco | currency:'BRL':true }}</p>
